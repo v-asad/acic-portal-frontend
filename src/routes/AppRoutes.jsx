@@ -10,7 +10,7 @@ const AuthRegister = Loadable(lazy(() => import('pages/register')));
 
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 const Surveys = Loadable(lazy(() => import('pages/surveys')));
-const CreateSurvey = Loadable(lazy(() => import('pages/surveys/Create')));
+const CreateSurvey = Loadable(lazy(() => import('pages/surveys/create')));
 
 // ==============================|| ROUTING RENDER ||============================== //
 
@@ -30,9 +30,8 @@ const AppRoutes = ({ isLoggedIn }) => {
         return (
             <AuthLayout>
                 <Routes>
-                    <Route index element={<AuthLogin />} />
                     <Route path="/register" element={<AuthRegister />} />
-                    <Route path="*" element={<Navigate to="/" replace={true} />} />
+                    <Route path="*" element={<AuthLogin />} />
                 </Routes>
             </AuthLayout>
         );
