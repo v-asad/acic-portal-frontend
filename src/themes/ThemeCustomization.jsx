@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 
 // material-ui
@@ -58,7 +57,3 @@ export default function ThemeCustomization({ children }) {
         </StyledEngineProvider>
     );
 }
-
-ThemeCustomization.propTypes = {
-    children: PropTypes.node
-};

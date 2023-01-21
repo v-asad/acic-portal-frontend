@@ -21,6 +21,8 @@ import {
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
+import { useCookies } from 'react-cookie';
+
 // project import
 import AnimateButton from 'components/@extended/AnimateButton';
 
@@ -31,6 +33,7 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 
 const AuthLogin = () => {
     const [checked, setChecked] = React.useState(false);
+    const [, setCookie] = useCookies(['user']);
 
     const [showPassword, setShowPassword] = React.useState(false);
     const handleClickShowPassword = () => {
@@ -39,6 +42,10 @@ const AuthLogin = () => {
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
+    };
+
+    const handleLogin = () => {
+        setCookie('user', new Date().getTime());
     };
 
     return (
@@ -157,6 +164,7 @@ const AuthLogin = () => {
                                         type="submit"
                                         variant="contained"
                                         color="primary"
+                                        onClick={handleLogin}
                                     >
                                         Login
                                     </Button>
