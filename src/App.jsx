@@ -1,16 +1,22 @@
+import { CookiesProvider } from 'react-cookie';
+
 // project import
-import Routes from 'routes';
-import ThemeCustomization from 'themes';
-import ScrollTop from 'components/ScrollTop';
+import { Authenticator } from 'hocs';
+import { ThemeCustomization } from 'themes';
+import { ScrollTop } from 'components';
 
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 
-const App = () => (
-    <ThemeCustomization>
-        <ScrollTop>
-            <Routes />
-        </ScrollTop>
-    </ThemeCustomization>
-);
+const App = () => {
+    return (
+        <CookiesProvider>
+            <ThemeCustomization>
+                <ScrollTop>
+                    <Authenticator />
+                </ScrollTop>
+            </ThemeCustomization>
+        </CookiesProvider>
+    );
+};
 
 export default App;

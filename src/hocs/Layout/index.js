@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // material-ui
@@ -17,7 +16,7 @@ import { openDrawer } from 'store/reducers/menu';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
-const MainLayout = () => {
+const MainLayout = ({ children }) => {
     const theme = useTheme();
     const matchDownLG = useMediaQuery(theme.breakpoints.down('xl'));
     const dispatch = useDispatch();
@@ -50,8 +49,8 @@ const MainLayout = () => {
             <Drawer open={open} handleDrawerToggle={handleDrawerToggle} />
             <Box component="main" sx={{ width: '100%', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
                 <Toolbar />
-                <Breadcrumbs navigation={navigation} title titleBottom card={false} divider={false} />
-                <Outlet />
+                <Breadcrumbs navigation={navigation} titleBottom card={false} divider={false} />
+                {children}
             </Box>
         </Box>
     );

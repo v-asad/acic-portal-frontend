@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 
+import { useCookies } from 'react-cookie';
+
 // material-ui
 import { useTheme } from '@mui/material/styles';
 import {
@@ -56,8 +58,10 @@ function a11yProps(index) {
 const Profile = () => {
     const theme = useTheme();
 
+    const [, , removeCookie] = useCookies(['user']);
+
     const handleLogout = async () => {
-        // logout
+        removeCookie('user');
     };
 
     const anchorRef = useRef(null);

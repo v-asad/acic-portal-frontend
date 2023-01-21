@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -17,10 +16,6 @@ const ScrollTop = ({ children }) => {
     }, [pathname]);
 
     return children || null;
-};
-
-ScrollTop.propTypes = {
-    children: PropTypes.node
 };
 
 export default ScrollTop;

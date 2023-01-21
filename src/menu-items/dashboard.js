@@ -1,10 +1,9 @@
 // assets
-import { DashboardOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { DashboardOutlined } from '@ant-design/icons';
 
 // icons
 const icons = {
-    DashboardOutlined,
-    UnorderedListOutlined
+    DashboardOutlined
 };
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
@@ -21,14 +20,6 @@ const dashboard = {
             url: '/dashboard/default',
             icon: icons.DashboardOutlined,
             breadcrumbs: false
-        },
-        {
-            id: 'surveys',
-            title: 'Surveys',
-            type: 'item',
-            url: '/dashboard/',
-            icon: icons.UnorderedListOutlined,
-            breadcrumbs: true
         }
     ]
 };
