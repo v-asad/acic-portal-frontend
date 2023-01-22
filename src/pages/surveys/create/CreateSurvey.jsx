@@ -1,16 +1,13 @@
 // material-ui
-import { Box, FormHelperText, Grid, InputLabel, OutlinedInput, Stack, Select, MenuItem, Button, IconButton } from '@mui/material';
+import { FormHelperText, Grid, InputLabel, OutlinedInput, Stack } from '@mui/material';
 
 // third party
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
-import { PlusOutlined, DragOutlined } from '@ant-design/icons';
 import { MainCard } from 'components';
 
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-const QUESTION_TYPES = ['TEXT', 'MCQ'];
+import QuestionList from './QuestionList';
 
 const ANSWER_SCHEMA = { id: new Date().getTime(), title: '' };
 const QUESTION_SCHEMA = { id: new Date().getTime(), title: '', type: 'TEXT', answers: [] };
@@ -46,7 +43,7 @@ const CreateSurvey = () => {
                     <form noValidate onSubmit={handleSubmit}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={4}>
-                                <MainCard>
+                                <MainCard boxShadow={true} border={false} shadow={'0 0 10px -7px black'}>
                                     <Grid item xs={12}>
                                         <Stack spacing={1}>
                                             <InputLabel htmlFor="survey-title">Title*</InputLabel>
@@ -90,7 +87,7 @@ const CreateSurvey = () => {
                                 </MainCard>
                             </Grid>
                             <Grid item xs={12} md={8}>
-                                <Stack spacing={1}>
+                                <Stack spacing={1} pb={50}>
                                     <InputLabel>Questions</InputLabel>
                                     <QuestionList questions={values.questions} setQuestions={(q) => setFieldValue('questions', q)} />
                                 </Stack>
@@ -105,139 +102,6 @@ const CreateSurvey = () => {
                 )}
             </Formik>
         </>
-    );
-};
-
-// a little function to help us with reordering the result
-const reorder = (list, startIndex, endIndex) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-};
-
-const QuestionList = ({ questions = [], setQuestions = () => {} }) => {
-    const addQuestion = () => {
-        const newQuestion = { ...QUESTION_SCHEMA, id: new Date().getTime(), answers: [{ ...ANSWER_SCHEMA, id: new Date().getTime() }] };
-        setQuestions([...questions, newQuestion]);
-    };
-
-    const updateQuestion = (updatedQuestion) => {
-        setQuestions(
-            questions.map((question) => {
-                if (question.id === updatedQuestion.id) return updatedQuestion;
-                else return question;
-            })
-        );
-    };
-
-    const onQuestionDragEnd = (result) => {
-        // dropped outside the list
-        if (!result.destination) {
-            return;
-        }
-
-        const reOrderedQuestions = reorder(questions, result.source.index, result.destination.index);
-        setQuestions(reOrderedQuestions);
-    };
-
-    return (
-        <>
-            {questions.length !== 0 && (
-                <DragDropContext onDragEnd={onQuestionDragEnd}>
-                    <Droppable droppableId="questionDroppable">
-                        {(provided, { isDraggingOver }) => (
-                            <div {...provided.droppableProps} ref={provided.innerRef}>
-                                <Box
-                                    sx={
-                                        isDraggingOver
-                                            ? {
-                                                  transition: '0.25s all ease-in-out',
-                                                  border: (theme) => '1px dashed ' + theme.palette.primary.main,
-                                                  p: 1,
-                                                  background: '#fafafa',
-                                                  borderRadius: 2,
-                                                  pb: 30
-                                              }
-                                            : {}
-                                    }
-                                >
-                                    <div hidden>{provided.placeholder}</div>
-                                    <Stack spacing={1}>
-                                        {questions.map((question, index) => (
-                                            <Draggable key={'q' + question.id} draggableId={'q' + question.id} index={index}>
-                                                {(provided) => (
-                                                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                        <Grid item xs={12}>
-                                                            <IconButton sx={{ cursor: 'grab' }}>
-                                                                <DragOutlined />
-                                                            </IconButton>
-                                                        </Grid>
-                                                        <Question question={question} setQuestion={updateQuestion} />
-                                                    </div>
-                                                )}
-                                            </Draggable>
-                                        ))}
-                                    </Stack>
-                                    {isDraggingOver || (
-                                        <Button
-                                            sx={{ width: '100%', my: 1, border: (theme) => '1px dashed ' + theme.palette.primary.main }}
-                                            onClick={addQuestion}
-                                        >
-                                            <PlusOutlined />
-                                            &nbsp;Add
-                                        </Button>
-                                    )}
-                                </Box>
-                            </div>
-                        )}
-                    </Droppable>
-                </DragDropContext>
-            )}
-        </>
-    );
-};
-
-const Question = ({ question, setQuestion }) => {
-    const handleTypeChange = (e) => {
-        const type = e.target.value;
-        setQuestion({ ...question, type });
-    };
-    const handleTitleChange = (e) => {
-        const title = e.target.value;
-        setQuestion({ ...question, title });
-    };
-    return (
-        <MainCard sx={{ cursor: 'default' }}>
-            <Stack spacing={1}>
-                <Grid container xs={12} spacing={1}>
-                    <Grid item xs={12} md={6}>
-                        <OutlinedInput
-                            fullWidth
-                            type="text"
-                            value={question.title}
-                            onChange={handleTitleChange}
-                            placeholder="Question Title"
-                            multiline
-                            rows={2}
-                        />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Stack spacing={1}>
-                            <InputLabel>Question Type*</InputLabel>
-                            <Select fullWidth value={question.type} onChange={handleTypeChange}>
-                                {QUESTION_TYPES.map((type, index) => (
-                                    <MenuItem key={index} value={type}>
-                                        {type}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </Stack>
-                    </Grid>
-                </Grid>
-            </Stack>
-        </MainCard>
     );
 };
 
