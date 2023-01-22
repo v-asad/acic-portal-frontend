@@ -1,21 +1,7 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
-import {
-    Button,
-    Checkbox,
-    FormControlLabel,
-    FormHelperText,
-    Grid,
-    Link,
-    IconButton,
-    InputAdornment,
-    InputLabel,
-    OutlinedInput,
-    Stack,
-    Typography
-} from '@mui/material';
+import { Button, FormHelperText, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, Stack } from '@mui/material';
 
 // third party
 import * as Yup from 'yup';
@@ -32,7 +18,7 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const AuthLogin = () => {
-    const [checked, setChecked] = React.useState(false);
+    // const [checked, setChecked] = React.useState(false);
     const [, setCookie] = useCookies(['user']);
 
     const [showPassword, setShowPassword] = React.useState(false);
@@ -130,7 +116,7 @@ const AuthLogin = () => {
                                 </Stack>
                             </Grid>
 
-                            <Grid item xs={12} sx={{ mt: -1 }}>
+                            {/* <Grid item xs={12} sx={{ mt: -1 }}>
                                 <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
                                     <FormControlLabel
                                         control={
@@ -146,9 +132,10 @@ const AuthLogin = () => {
                                     />
                                     <Link variant="h6" component={RouterLink} to="" color="text.primary">
                                         Forgot Password?
-                                    </Link>
+                                    </Link> 
                                 </Stack>
-                            </Grid>
+                            </Grid> */}
+
                             {errors.submit && (
                                 <Grid item xs={12}>
                                     <FormHelperText error>{errors.submit}</FormHelperText>

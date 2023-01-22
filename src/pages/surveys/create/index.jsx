@@ -1,10 +1,12 @@
 // material-ui
-import { Box, Grid, List, ListItemButton, ListItemText, Typography, Button } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 
 // project import
-import MainCard from 'components/MainCard';
+import { MainCard } from 'components';
 
 import { SaveOutlined } from '@ant-design/icons';
+
+import CreateSurvey from './CreateSurvey';
 
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
@@ -22,8 +24,8 @@ const Surveys = () => {
                     </Button>
                 </Box>
             </Grid>
-            <Grid item xs={12} md={7} lg={8}>
-                <MainCard content={false}></MainCard>
+            <Grid item xs={12} md={12} lg={12}>
+                <CreateSurvey />
             </Grid>
         </Grid>
     );

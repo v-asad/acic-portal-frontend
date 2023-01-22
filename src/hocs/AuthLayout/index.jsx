@@ -12,7 +12,7 @@ import AuthBackground from 'assets/images/auth/AuthBackground';
 
 // ==============================|| AUTHENTICATION - WRAPPER ||============================== //
 
-const AuthWrapper = ({ children }) => (
+const AuthLayout = ({ children }) => (
     <Box sx={{ minHeight: '100vh' }}>
         <AuthBackground />
         <Grid
@@ -44,8 +44,8 @@ const AuthWrapper = ({ children }) => (
     </Box>
 );
 
-AuthWrapper.propTypes = {
+AuthLayout.propTypes = {
     children: PropTypes.node
 };
 
-export default AuthWrapper;
+export default AuthLayout;

@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
 
 // material-ui
@@ -90,20 +90,20 @@ const MainCard = forwardRef(
     }
 );
 
-MainCard.propTypes = {
-    border: PropTypes.bool,
-    boxShadow: PropTypes.bool,
-    contentSX: PropTypes.object,
-    darkTitle: PropTypes.bool,
-    divider: PropTypes.bool,
-    elevation: PropTypes.number,
-    secondary: PropTypes.node,
-    shadow: PropTypes.string,
-    sx: PropTypes.object,
-    title: PropTypes.string,
-    codeHighlight: PropTypes.bool,
-    content: PropTypes.bool,
-    children: PropTypes.node
-};
+// MainCard.propTypes = {
+//     border: PropTypes.bool,
+//     boxShadow: PropTypes.bool,
+//     contentSX: PropTypes.object,
+//     darkTitle: PropTypes.bool,
+//     divider: PropTypes.bool,
+//     elevation: PropTypes.number,
+//     secondary: PropTypes.node,
+//     shadow: PropTypes.string,
+//     sx: PropTypes.object,
+//     title: PropTypes.string,
+//     codeHighlight: PropTypes.bool,
+//     content: PropTypes.bool,
+//     children: PropTypes.node
+// };
 
 export default MainCard;
