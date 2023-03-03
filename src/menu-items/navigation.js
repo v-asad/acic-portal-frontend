@@ -1,10 +1,11 @@
 // assets
-import { DashboardOutlined, UnorderedListOutlined } from '@ant-design/icons';
+import { DashboardOutlined, UnorderedListOutlined, UserOutlined } from '@ant-design/icons';
 
 // icons
 const icons = {
     DashboardOutlined,
-    UnorderedListOutlined
+    UnorderedListOutlined,
+    UserOutlined
 };
 
 // ==============================|| MENU ITEMS - DASHBOARD ||============================== //
@@ -20,7 +21,7 @@ const navigation = {
             type: 'item',
             url: '/',
             icon: icons.DashboardOutlined,
-            breadcrumbs: true
+            breadcrumbs: false
         },
         {
             id: 'surveys',
@@ -28,7 +29,15 @@ const navigation = {
             type: 'item',
             url: '/surveys',
             icon: icons.UnorderedListOutlined,
-            breadcrumbs: true
+            breadcrumbs: false
+        },
+        {
+            id: 'profile',
+            title: 'Profile',
+            type: 'item',
+            url: '/profile',
+            icon: icons.UserOutlined,
+            breadcrumbs: false
         }
     ]
 };

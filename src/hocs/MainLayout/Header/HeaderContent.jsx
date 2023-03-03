@@ -26,6 +26,7 @@ import Transitions from 'components/@extended/Transitions';
 
 // assets
 import { LogoutOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 // ==============================|| HEADER - CONTENT ||============================== //
 
@@ -44,6 +45,8 @@ const Profile = () => {
     const theme = useTheme();
 
     const [, , removeCookie] = useCookies(['user']);
+
+    const navigate = useNavigate();
 
     const handleLogout = async () => {
         removeCookie('user');
@@ -73,7 +76,13 @@ const Profile = () => {
                 aria-haspopup="true"
                 onClick={handleToggle}
             >
-                <Avatar sx={{ width: 32, height: 32, fontSize: 14, background: (theme) => theme.palette.primary.main }}>A</Avatar>
+                <Avatar sx={{ width: 32, height: 32, fontSize: 14, background: (theme) => theme.palette.primary.main }}>
+                    <img
+                        style={{ objectFit: 'cover', height: '100%', width: '100%' }}
+                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                        alt="User Profile"
+                    />
+                </Avatar>
             </ButtonBase>
             <Popper
                 placement="bottom-end"
@@ -112,7 +121,7 @@ const Profile = () => {
                                         <CardContent sx={{ p: 2.5 }}>
                                             <Grid container justifyContent="space-between" alignItems="center">
                                                 <Grid item>
-                                                    <Button sx={{ py: 0.5, px: 1.5, borderRadius: 1 }}>
+                                                    <Button sx={{ py: 0.5, px: 1.5, borderRadius: 1 }} onClick={() => navigate('profile')}>
                                                         <Stack direction="row" spacing={1.25} alignItems="center">
                                                             <Avatar
                                                                 sx={{
@@ -122,10 +131,14 @@ const Profile = () => {
                                                                     background: (theme) => theme.palette.primary.main
                                                                 }}
                                                             >
-                                                                A
+                                                                <img
+                                                                    style={{ objectFit: 'cover', height: '100%', width: '100%' }}
+                                                                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                                                                    alt="User Profile"
+                                                                />
                                                             </Avatar>
                                                             <Stack>
-                                                                <Typography variant="h6">John Doe</Typography>
+                                                                <Typography variant="h6">Username</Typography>
                                                                 <Typography variant="body2" color="textSecondary">
                                                                     Convener
                                                                 </Typography>
